@@ -51,3 +51,21 @@ Terraform provider's job is to map the varibales, crate a payload and call an AP
     "displayName": "example-vcn",
     "compartmentId": "ocid1.compartment.oc1..."
     }
+
+## **What Is the Terraform State File?**
+
+After applying the configuration and OCI creates the resource, **Terraform writes metadata into a local file called `terraform.tfstate`**.
+
+The **state file** keeps track of:
+
+- The resources Terraform manages
+- Their real-world IDs (like OCIDs)
+- Attributes (like IP addresses, OCID, shape, etc.)
+
+This file is crucial for:
+
+- **Tracking changes**: so Terraform knows what to add, change, or destroy
+- **Drift detection**: identifying manual changes in the cloud
+- **Enabling collaboration**: via remote state storage like OCI Object Storage or Terraform Cloud
+
+> **Warning**: The state file may contain sensitive information (e.g., passwords, secrets), so treat it securely.
