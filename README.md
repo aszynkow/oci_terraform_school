@@ -39,7 +39,7 @@ Each folder represents one week of the course, with:
 
 ### 🚀 Get Started
 
-Start with [Session 0 – What is Terraform and How It Works](./session-00-intro/README.md)  
+Start with [Session 0 – What is Terraform and How It Works](./session0_intro_to_terraform/README.md)
 Or jump to any module from the table below 👇
 
 ## Sessions
