@@ -25,21 +25,27 @@ graph TD
 
 **Example:**
 
-.tf file:
+example.tf file:
 
-*resource "oci_core_vcn" "example" {
-  cidr_block     = "10.0.0.0/16"
-  display_name   = "example-vcn"
-  compartment_id = var.compartment_id
-}*
+    resource "oci_core_vcn" "example" {
+    cidr_block     = "10.0.0.0/16"
+    display_name   = "example-vcn"
+    compartment_id = "ocid1.compartment.oc1..."
+    }
 
-API Call:
+Terraform provider's job:
 
-POST https://iaas.ap-sydney-1.oraclecloud.com/20160918/vcns
-Authorization: Signature ...
-*Content-Type: application/json
-{
-  "cidrBlock": "10.0.0.0/16",
-  "displayName": "example-vcn",
-  "compartmentId": "ocid1.compartment.oc1..."
-}*
+    cidr_block     -> cidrBlock
+    display_name   -> displayName
+    compartment_id -> compartmentId
+
+    API Call:
+
+    POST https://iaas.ap-sydney-1.oraclecloud.com/20160918/vcns
+    Authorization: Signature ...
+    Content-Type: application/json
+    {
+    "cidrBlock": "10.0.0.0/16",
+    "displayName": "example-vcn",
+    "compartmentId": "ocid1.compartment.oc1..."
+    }
