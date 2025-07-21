@@ -4,9 +4,9 @@
 - Providers and Resources
 - How Terraform interacts with OCI APIs
 
-```mermaid
+<details> <summary>
 graph TD
     A[Terraform CLI] --> B[Terraform Provider (OCI)]
     B --> C[OCI REST API]
     C --> D[OCI Services: VCN, Compute, DB]
-```
+</summary>
