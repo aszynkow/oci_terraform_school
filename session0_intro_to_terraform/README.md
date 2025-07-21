@@ -33,7 +33,7 @@ example.tf file:
     compartment_id = "ocid1.compartment.oc1..."
     }
 
-Terraform provider's job is to map the varibales, crate a paylod file and call an API.
+Terraform provider's job is to map the varibales, crate a payload and call an API.
 
     Map variables and create a payload:
 
