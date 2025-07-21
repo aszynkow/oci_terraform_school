@@ -10,3 +10,5 @@ graph TD
     B --> C[OCI REST API]
     C --> D[OCI Services: VCN, Compute, DB]
 </summary>
+
+![Terraform Provider: Flow](images/tfprovider_flow.png)
