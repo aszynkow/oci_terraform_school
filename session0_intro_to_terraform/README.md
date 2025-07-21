@@ -1,16 +1,16 @@
 # Session 0: Introduction to Terraform
 
-**What Is Terraform**
+## **What Is Terraform?**
 
 Terraform is an open-source Infrastructure as Code (IaC) tool developed by HashiCorp. It allows you to define and manage cloud infrastructure using configuration files written in a declarative language called HCL (HashiCorp Configuration Language).
 
-**How It Works with APIs**
+## **How It Works with APIs**
 
-1. You write a .tf file defining the desired infrastructure (e.g., a compute instance in OCI).
+1. You write a **.tf** file defining the desired infrastructure (e.g., a compute instance in OCI).
 
 2. Terraform uses a provider (like oci) to translate your config into API calls.
 
-3. Terraform sends authenticated API requests to Oracle Cloud Infrastructure.
+3. Terraform sends authenticated API requests to **Oracle Cloud Infrastructure**.
 
 4. OCI creates, modifies, or destroys resources based on the API calls.
 
