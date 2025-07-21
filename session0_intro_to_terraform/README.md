@@ -11,4 +11,4 @@ graph TD
     C --> D[OCI Services: VCN, Compute, DB]
 </summary>
 
-![Terraform Provider: Flow](images/tfprovider_flow.png)
+![Terraform Provider: Flow](../images/tfprovider_flow.png)
