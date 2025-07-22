@@ -27,38 +27,38 @@ terraform -version
 1. Create a [provider.tf](provider.tf) file
 2. Define your variables in [variables.tf](variables.tf) file
             
-**Variable Value Precedence Order (Highest to Lowest):**
+## **Variable Value Precedence Order (Highest to Lowest):**
 1. **Command-line arguments:**
  
-Arguments passed directly to the terraform command (e.g., terraform apply -var 'instance_type=t2.medium') override other sources.
+    Arguments passed directly to the terraform command (e.g., terraform apply -var 'instance_type=t2.medium') override other sources.
 
 2. **Environment variables (TF_VAR_name):**
 
-Environment variables prefixed with TF_VAR_ are used as variable values 
+    Environment variables prefixed with TF_VAR_ are used as variable values 
             
 3. **Priority Variable Sets:**
             
-In HCP Terraform, variable sets with the "priority" attribute set will override variables from less specific scopes, according to HashiCorp Developer. 
+    In HCP Terraform, variable sets with the "priority" attribute set will override variables from less specific scopes, according to HashiCorp Developer. 
             
 4. ***.auto.tfvars files in test directories:**
             
-Variables defined in *.auto.tfvars files within test directories are given higher precedence than those in the main configuration directory, according to HashiCorp Developer. 
+    Variables defined in *.auto.tfvars files within test directories are given higher precedence than those in the main configuration directory, according to HashiCorp Developer. 
             
 5. ***.auto.tfvars files:**
             
-Files with the .auto.tfvars extension are loaded automatically and their values are used. If multiple such files exist, they are loaded alphabetically, with the last one loaded taking precedence, according to Medium. 
+    Files with the .auto.tfvars extension are loaded automatically and their values are used. If multiple such files exist, they are loaded alphabetically, with the last one loaded taking precedence, according to Medium. 
             
 6. **terraform.tfvars file:** -> Define your variables in [variables.tf](variables.tf) file
             
-The terraform.tfvars file is loaded by default, and its values are used if no other higher-priority sources provide values for the same variables. 
+    The terraform.tfvars file is loaded by default, and its values are used if no other higher-priority sources provide values for the same variables. 
             
 7. **Default values in variable definitions:**
             
-If no other source provides a value, the default value defined in the variable definition is used. 
+    If no other source provides a value, the default value defined in the variable definition is used. 
             
 8. **Values defined in the configuration:**
 
-Values defined directly within the Terraform configuration using var.variable_name are only used if no other source provides a value.        
+    Values defined directly within the Terraform configuration using var.variable_name are only used if no other source provides a value.        
 
 
 ## 🛠 Step 3: Run Terraform Commands
