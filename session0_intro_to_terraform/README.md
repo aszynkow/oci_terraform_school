@@ -14,13 +14,6 @@ Terraform is an open-source Infrastructure as Code (IaC) tool developed by Hashi
 
 4. OCI creates, modifies, or destroys resources based on the API calls.
 
-<details> <summary>
-graph TD
-    A[Terraform CLI] --> B[Terraform Provider (OCI)]
-    B --> C[OCI REST API]
-    C --> D[OCI Services: VCN, Compute, DB]
-</summary>
-
 ![Terraform Provider: Flow](../images/tfprovider_flow.png)
 
 **Example:**
