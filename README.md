@@ -44,8 +44,8 @@ Or jump to any module from the table below 👇
 
 ## Sessions
 - [Introduction to Terraform, providers, and APIs](./session0_intro_to_terraform/README.md)
-- [Terraform installation, CLI commands, and provider setup](./session0_setup_and_basics/README.md)
-- [Terraform installation, CLI commands, and provider setup](./session1_compartment/README.md)
+- [Terraform installation, CLI commands, and provider setup](./session1_setup_and_basics/README.md)
+- [Source the environemnt and create a compartment](./session2_compartment/README.md)
 - [Create a VCN and subnet using Terraform](./session3_vcn_and_subnet/README.md)
 - [Launch a compute instance with cloud-init](./session4_compute_instance/README.md)
 - [Deploy an OKE Kubernetes cluster](./session5_oke_cluster/README.md)
