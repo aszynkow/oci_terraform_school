@@ -96,10 +96,21 @@ export TF_VAR_region="ap-melbourne-1"
 export TF_VAR_private_key_path="/path/to/private/api/key/apikey.pem"
 ```
 
-### 🔸 SAve and run (dot) it
+### 🔸 Save and run (dot) it and verify
 
 ```bash
 . ./scripts/sourceTfEnv.sh
+env | grep TF
+```
+
+Output:
+
+```
+TF_VAR_user_ocid=ocid1.user.oc1..
+TF_VAR_fingerprint=f3:F4.....
+TF_VAR_tenancy_ocid=ocid1.tenancy.oc1..
+TF_VAR_region=ap-melbourne-1
+TF_VAR_private_key_path=/path/to/private/api/key/apikey.pem
 ```
 
 ## 🛠 Step 4: Run Terraform Commands
