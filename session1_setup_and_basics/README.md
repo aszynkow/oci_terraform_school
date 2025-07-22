@@ -11,6 +11,12 @@ Welcome to **Session 1** of the OCI Terraform School. In this session, you'll se
 - How to run the core Terraform CLI commands
 
 ---
+## 🛠 Step 0: Clone this repository 
+
+```bash
+cd ~
+git clone  
+```
 
 ## 🛠 Step 1: Install Terraform
 
@@ -60,8 +66,30 @@ terraform -version
 
     Values defined directly within the Terraform configuration using var.variable_name are only used if no other source provides a value.        
 
+## 🛠 Step 3: Source Terrafrom Environment
 
-## 🛠 Step 3: Run Terraform Commands
+### 🔸 Populate TF Environemnt sourcing script
+
+```bash
+cd ~/oci_terraform_school
+vi ./scripts/sourceTfEnv.sh
+```
+
+**Below are just examples so you still need to populate with values from your OCI tenancy or ~/.oci/config file if alerady have one**
+
+export TF_VAR_user_ocid="ocid1.user.oc1.."
+export TF_VAR_fingerprint="f3:F4....."
+export TF_VAR_tenancy_ocid="ocid1.tenancy.oc1.."
+export TF_VAR_region="ap-melbourne-1"
+export TF_VAR_private_key_path="/path/to/private/api/key/apikey.pem"
+
+### 🔸 SAve and run (dot) it
+
+```bash
+. ./scripts/sourceTfEnv.yf
+```
+
+## 🛠 Step 4: Run Terraform Commands
 
 ### 🔸 Initialize Terraform
 
@@ -69,8 +97,17 @@ terraform -version
 terraform init
 ```
 
-This sets up your working directory and downloads the provider plugin.
+Output:
 
+```
+Terraform initialized in an empty directory!
+
+The directory has no Terraform configuration files. You may begin working
+with Terraform immediately by creating Terraform configuration files.
+Shows what Terraform would do before applying changes.
+
+This sets up your working directory and downloads the provider plugin.
+```
 ---
 
 ### 🔸 Validate Your Code
@@ -79,7 +116,10 @@ This sets up your working directory and downloads the provider plugin.
 terraform validate
 ```
 
-Checks for syntax or configuration issues.
+Output:
+```
+Success! The configuration is valid.
+```
 
 ---
 
@@ -89,7 +129,16 @@ Checks for syntax or configuration issues.
 terraform plan
 ```
 
-Shows what Terraform would do before applying changes.
+Output:
+
+```
+Error: No configuration files
+│ 
+│ Plan requires configuration to be present. Planning without a configuration would mark
+│ everything for destruction, which is normally not what is desired. If you would like to
+│ destroy everything, run plan with the -destroy option. Otherwise, create a Terraform
+│ configuration file (.tf file) and try again.
+```
 
 ---
 
@@ -99,7 +148,15 @@ Shows what Terraform would do before applying changes.
 terraform apply
 ```
 
-Creates the resources defined in your `.tf` files.
+Output:
+
+```
+Error: No configuration files
+│ 
+│ Apply requires configuration to be present. Applying without a configuration would mark
+│ everything for destruction, which is normally not what is desired. If you would like to
+│ destroy everything, run 'terraform destroy' instead.
+```
 
 ---
 
@@ -132,4 +189,4 @@ We'll start deploying actual OCI infrastructure — beginning with Virtual Cloud
 
 ---
 
-📁 **Next:** [Session 2 - VCN and Subnets](../session2_vcn_and_subnet/README.md)
+📁 **Next:** [Session 2 - Compartment](../session2_compartment/README.md)

@@ -82,4 +82,4 @@ We'll start Terraform set up for OCI and deploy a compartment.
 
 ---
 
-📁 **Next:** [Session 1 - Setup and BAsics](../session1_setup_and_basics/README.md)
+📁 **Next:** [Session 1 - Setup and Basics](../session1_setup_and_basics/README.md)
