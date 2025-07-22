@@ -99,7 +99,7 @@ export TF_VAR_private_key_path="/path/to/private/api/key/apikey.pem"
 ### 🔸 SAve and run (dot) it
 
 ```bash
-. ./scripts/sourceTfEnv.yf
+. ./scripts/sourceTfEnv.sh
 ```
 
 ## 🛠 Step 4: Run Terraform Commands
