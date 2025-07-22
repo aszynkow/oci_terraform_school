@@ -1,5 +1,18 @@
 # Session 0: Introduction to Terraform
 
+Welcome to **Session 0** of the OCI Terraform School. In this session, you'll understand what Terrafrom is and how it works with Cloud API's
+
+---
+
+## ✅ What You'll Learn
+
+- What is Terraform
+- How it works with Cloud API's
+- What is a Terraform state file
+
+---
+
+
 ## **What Is Terraform?**
 
 Terraform is an open-source Infrastructure as Code (IaC) tool developed by HashiCorp. It allows you to define and manage cloud infrastructure using configuration files written in a declarative language called HCL (HashiCorp Configuration Language).
@@ -62,3 +75,11 @@ This file is crucial for:
 - **Enabling collaboration**: via remote state storage like OCI Object Storage or Terraform Cloud
 
 > **Warning**: The state file may contain sensitive information (e.g., passwords, secrets), so treat it securely.
+
+## 🚀 Coming Up in Session 1
+
+We'll start Terraform set up for OCI and deploy a compartment.
+
+---
+
+📁 **Next:** [Session 1 - Setup and BAsics](../session1_setup_and_basics/README.md)
