@@ -28,6 +28,16 @@ git clone
 terraform -version
 ```
 
+Output:
+
+```
+Terraform v1.5.7
+on darwin_arm64
+
+Your version of Terraform is out of date! The latest version
+is 1.12.2. You can update by downloading from https://www.terraform.io/downloads.html
+```
+
 ## 🛠 Step 2: Create Your Terraform Provider Configuration
 
 1. Create a [provider.tf](provider.tf) file
@@ -74,14 +84,17 @@ terraform -version
 cd ~/oci_terraform_school
 vi ./scripts/sourceTfEnv.sh
 ```
-
 **Below are just examples so you still need to populate with values from your OCI tenancy or ~/.oci/config file if alerady have one**
 
+Output:
+
+```
 export TF_VAR_user_ocid="ocid1.user.oc1.."
 export TF_VAR_fingerprint="f3:F4....."
 export TF_VAR_tenancy_ocid="ocid1.tenancy.oc1.."
 export TF_VAR_region="ap-melbourne-1"
 export TF_VAR_private_key_path="/path/to/private/api/key/apikey.pem"
+```
 
 ### 🔸 SAve and run (dot) it
 
