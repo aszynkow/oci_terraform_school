@@ -15,7 +15,7 @@ Welcome to **Session 1** of the OCI Terraform School. In this session, you'll se
 
 ```bash
 cd ~
-git clone  
+git clone https://github.com/aszynkow/oci_terraform_school.git 
 ```
 
 ## 🛠 Step 1: Install Terraform
