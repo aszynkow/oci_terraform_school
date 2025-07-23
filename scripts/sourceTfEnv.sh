@@ -1,5 +1,5 @@
 export TF_VAR_user_ocid="ocid1.user.oc1.."
 export TF_VAR_fingerprint="f3:F4....."
 export TF_VAR_tenancy_ocid="ocid1.tenancy.oc1.."
-export TF_VAR_region="ap-melbourne-1"
+export TF_VAR_region="ap-sydney-1"
 export TF_VAR_private_key_path="/path/to/private/api/key/apikey.pem"
