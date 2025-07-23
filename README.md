@@ -43,13 +43,13 @@ Start with [Session 0 – What is Terraform and How It Works](./session0_intro_t
 Or jump to any module from the table below 👇
 
 ## Sessions
-- [Introduction to Terraform, providers, and APIs](./session0_intro_to_terraform/README.md)
-- [Terraform installation, CLI commands, and provider setup](./session1_setup_and_basics/README.md)
-- [Source the environemnt and create a compartment](./session2_compartment/README.md)
-- [Create a VCN and subnet using Terraform](./session3_vcn_and_subnet/README.md)
-- [Launch a compute instance with cloud-init](./session4_compute_instance/README.md)
-- [Deploy an OKE Kubernetes cluster](./session5_oke_cluster/README.md)
-- [Provision ADB and DB Systems](./session6_oci_databases/README.md)
-- [Refactor previous code using modules](./session7_modules/README.md)
-- [Configure and use remote state in Object Storage](./session8_remote_state/README.md)
-- [Build a full-stack app infrastructure using all components](./session9_final_project/README.md)
+- [Session 0 - Introduction to Terraform, providers, and APIs](./session0_intro_to_terraform/README.md)
+- [Session 1 - Terraform installation, CLI commands, and provider setup](./session1_setup_and_basics/README.md)
+- [Sesionn 2 - Source the environemnt and create a compartment](./session2_compartment/README.md)
+- [Sesionn 3 - Create a VCN and subnet using Terraform](./session3_vcn_and_subnet/README.md)
+- [Sesionn 4 - Launch a compute instance with cloud-init](./session4_compute_instance/README.md)
+- [Sesionn 5 - Deploy an OKE Kubernetes cluster](./session5_oke_cluster/README.md)
+- [Sesionn 6 - Provision ADB and DB Systems](./session6_oci_databases/README.md)
+- [Sesionn 7 - Refactor previous code using modules](./session7_modules/README.md)
+- [Sesionn 8 - Configure and use remote state in Object Storage](./session8_remote_state/README.md)
+- [Sesionn 9 - Build a full-stack app infrastructure using all components](./session9_final_project/README.md)
