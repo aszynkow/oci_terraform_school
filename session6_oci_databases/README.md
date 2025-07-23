@@ -1,4 +1,4 @@
-# Session 5: OCI Databases
+# Session 6: OCI Databases
 
 - Create Autonomous Database (ADB)
 - Launch DB System
