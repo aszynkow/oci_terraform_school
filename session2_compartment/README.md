@@ -167,6 +167,21 @@ Or use the --auto-approve falg to force a 'yes' as a value for a prompt above.
 terraform apply --auto-approve
 ```
 
+Expected output:
+
+```
+oci_identity_compartment.tfschool: Creating...
+oci_identity_compartment.tfschool: Creation complete after 10s [id=ocid1.compartment.oc1..]
+
+Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+compartment_id = "ocid1.compartment.oc1.."
+compartment_name = "tf-school-compartmen"
+parent_compartment_id = "ocid1.compartment.oc1.."
+```
+
 ---
 
 ### 🔐 Explanation:
