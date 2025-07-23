@@ -60,7 +60,9 @@ These variables are defined in your [variables.tf](./variables.tf) file and are 
 - ✅ **Provider environment variables** → Required for provider to make authenticated API calls
 - ✅ **tfvars variables** → Used in defining and customizing the infrastructure
 
-## 4. Initialize Terraform
+## Step 3. Run Terraform Commands
+
+### 🔸 Initialize Terraform
 
 Run `terraform init` to initialize your working directory and download the necessary provider plugins:
 
@@ -68,9 +70,23 @@ Run `terraform init` to initialize your working directory and download the neces
 terraform init
 ```
 
+Expected output:
+
+```
+Terraform has been successfully initialized!
+
+You may now begin working with Terraform. Try running "terraform plan" to see
+any changes that are required for your infrastructure. All Terraform commands
+should now work.
+
+If you ever set or change modules or backend configuration for Terraform,
+rerun this command to reinitialize your working directory. If you forget, other
+commands will detect it and remind you to do so if necessary.
+```
+
 ---
 
-## 5. Validate the Configuration
+### 🔸 Validate the Configuration
 
 Make sure the configuration is syntactically valid and all required variables are accounted for:
 
@@ -80,7 +96,7 @@ terraform validate
 
 ---
 
-## 6. Plan the Deployment
+### 🔸 Plan the Deployment
 
 Check what resources will be created without applying any changes:
 
@@ -91,12 +107,43 @@ terraform plan
 Expected output:
 
 ```
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the
+following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # oci_identity_compartment.tfschool will be created
+  + resource "oci_identity_compartment" "tfschool" {
+      + compartment_id = "ocid1.compartment.oc1..aaaaaaaadd4reahxbwpu3usth6y2j4uzclwknj76ento4q63pajpekn6qjvq"
+      + defined_tags   = (known after apply)
+      + description    = "Compartment for Terraform School demo1"
+      + enable_delete  = true
+      + freeform_tags  = (known after apply)
+      + id             = (known after apply)
+      + inactive_state = (known after apply)
+      + is_accessible  = (known after apply)
+      + name           = "tf-school-compartmen"
+      + state          = (known after apply)
+      + time_created   = (known after apply)
+    }
+
 Plan: 1 to add, 0 to change, 0 to destroy.
+
+Changes to Outputs:
+  + compartment_id        = (known after apply)
+  + compartment_name      = "tf-school-compartmen"
+  + parent_compartment_id = "ocid1.compartment.oc1.."
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+Note: You didn't use the -out option to save this plan, so Terraform can't guarantee to take exactly these actions if you run
+"terraform apply" now.
 ```
 
 ---
 
-## 7. Apply the Configuration
+### 🔸 Apply the Configuration
 
 Apply the plan and provision resources in OCI:
 
@@ -114,10 +161,10 @@ Do you want to perform these actions?
   Enter a value: yes
 ```
 
-Or use the --auto-apply falg to force a 'yes' as a value fro a prompt above.
+Or use the --auto-approve falg to force a 'yes' as a value fro a prompt above.
 
 ```bash
-terraform apply --auto-apply
+terraform apply --auto-approve
 ```
 
 ---
@@ -157,16 +204,12 @@ This is especially useful when working in production environments to avoid accid
 The outputs.tf file is used to expose important values created by the resource for reference or use in downstream modules, automation scripts, or simply for user visibility after deployment.
 
 ```hcl
-output "parent_compartment_name" {
-  value = oci_identity_compartment.tfschool.parent_compartment_name
-}
-
 output "parent_compartment_id" {
-  value = oci_identity_compartment.tfschool.parent_compartment_id
+  value = var.compartment_ocid
 }
 
 output "compartment_id" {
-  value = oci_identity_compartment.tfschool.compartment_id
+  value = oci_identity_compartment.tfschool.id
 }
 
 output "compartment_name" {
@@ -174,11 +217,9 @@ output "compartment_name" {
 }
 ```
 
-- **parent_compartment_name:** Displays the name of the parent compartment in which the new compartment was created.
+- **var.compartment_ocid:** Outputs the OCID of the parent compartment whcih is value passed to the input variable
 
-- **parent_compartment_id:** Outputs the OCID of the parent compartment.
-
-- **compartment_id:** Outputs the OCID of the new compartment created by Terraform.
+- **id:** Outputs the OCID of the new compartment created by Terraform.
 
 - **compartment_name:** Outputs the name of the newly created compartment.
 
