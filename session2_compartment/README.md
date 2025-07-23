@@ -334,8 +334,122 @@ When you run terraform plan later, Terraform compares:
 
 This lets Terraform determine the delta (add/update/delete) and ensures no unnecessary changes are made.
 
+## Step 3. Run Terraform Commands - make changes
 
-☁️ Remote State Storage (Recommended for Teams)
+### 🔸 Change compartment name 
+
+Check what resources will be created without applying any changes:
+
+```bash
+terraform plan
+```
+
+Expected output:
+
+Next,edit a [terraform.tfvars](./terraform.tfvars) file to change the compartment name:
+
+```hcl
+compartment_ocid        = "ocid1.compartment.oc1..xxxxx"
+compartment_name        = "tf-school-compartment_**new**"
+compartment_description = "Compartment for Terraform School demo"
+```
+
+### 🔸 Run plan
+
+Check what resources will be created without applying any changes:
+
+```bash
+terraform plan
+```
+
+Expected output:
+
+```
+oci_identity_compartment.tfschool: Refreshing state... [id=ocid1.compartment.oc1..aaaaaaaadc2q7rtbxojocyft24arbcx34zp6ng4xba3sevif3he6inkxefua]
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the
+following symbols:
+  ~ update in-place
+
+Terraform will perform the following actions:
+
+  # oci_identity_compartment.tfschool will be updated in-place
+  ~ resource "oci_identity_compartment" "tfschool" {
+        id             = "ocid1.compartment.oc1..aaaaaaaadc2q7rtbxojocyft24arbcx34zp6ng4xba3sevif3he6inkxefua"
+      ~ name           = "tf-school-compartmen" -> "tf-school-compartmen-new"
+        # (8 unchanged attributes hidden)
+    }
+
+Plan: 0 to add, 1 to change, 0 to destroy.
+
+Changes to Outputs:
+  ~ compartment_name      = "tf-school-compartmen" -> "tf-school-compartmen-new"
+```
+
+This output is from a Terraform plan phase and indicates that Terraform has detected a change in your configuration that requires an in-place update to an existing OCI resource.
+
+🔁 What Will Change
+
+~ update in-place
+This symbol (~) shows an in-place update—the resource will be modified without being deleted or recreated.
+
+**Changes:**
+
+~ name = "tf-school-compartmen" -> "tf-school-compartmen-new"
+The name attribute of the compartment is changing from "tf-school-compartmen" to "tf-school-compartmen-new".
+
+**Outputs:**
+
+~ compartment_name = "tf-school-compartmen" -> "tf-school-compartmen-new"
+Since outputs.tf contains this value, Terraform updates it to reflect the new name after apply.
+
+
+### 🔸 Run apply
+
+```bash
+terraform apply --auto-approve
+```
+
+Expected output:
+
+```
+oci_identity_compartment.tfschool: Modifying... [id=ocid1.compartment.oc1..aaaaaaaadc2q7rtbxojocyft24arbcx34zp6ng4xba3sevif3he6inkxefua]
+oci_identity_compartment.tfschool: Modifications complete after 0s [id=ocid1.compartment.oc1..aaaaaaaadc2q7rtbxojocyft24arbcx34zp6ng4xba3sevif3he6inkxefua]
+
+Apply complete! Resources: 0 added, 1 changed, 0 destroyed.
+
+Outputs:
+
+compartment_id = "ocid1.compartment.oc1..aaaaaaaadc2q7rtbxojocyft24arbcx34zp6ng4xba3sevif3he6inkxefua"
+compartment_name = "tf-school-compartmen-new"
+parent_compartment_id = "ocid1.compartment.oc1..aaaaaaaadd4reahxbwpu3usth6y2j4uzclwknj76ento4q63pajpekn6qjvq"
+```
+
+🔧 Apply Explanation
+
+- **oci_identity_compartment.tfschool: Modifying...:**
+Terraform is updating the resource with the given OCID.
+
+- **Modifications complete after 0s:**
+The update finished immediately — likely a name change or metadata update.
+
+- **Apply complete! Resources: 0 added, 1 changed, 0 destroyed:**
+No new resources were created or deleted; only one resource was changed.
+
+- **Outputs confirm the final state:****
+
+- **compartment_id:** OCID of the updated compartment.
+
+- **compartment_name:** New name after the update.
+
+- **parent_compartment_id:** OCID of the parent compartment (unchanged).
+
+📁 Local State File Updated
+
+After the `terraform apply` operation, the local `terraform.tfstate` file was automatically updated to reflect the latest infrastructure state — including the updated compartment name. This file ensures Terraform remains aware of the current resource configuration, enabling accurate future planning and drift detection. Also local backup of the previous state in a file named `terraform.tfstate.backup` was automaticaly created.
+
+
+## ☁️ Remote State Storage (Recommended for Teams)
 
 When working in a team or managing critical infrastructure, it's best to store the state file remotely. This avoids issues like:
 
