@@ -8,7 +8,8 @@ Welcome to **Session 2** of the OCI Terraform School. In this session, you'll ex
 
 - How to use trraform.tfvars to set variables
 - How to create and destroy an OCI compartment
-- How to work with Outputs and variables
+- How to work with outputs and variables
+- How to work with Terraform State Files
 
 ## 🛠 Step 0: Clone this repository (if you have not already)
 
@@ -241,6 +242,119 @@ output "compartment_name" {
 These outputs are especially useful when chaining Terraform modules or providing quick verification of successful resource creation.
 ---
 
+📂 Understanding the Terraform State File (terraform.tfstate)
+
+Terraform keeps track of your real-world cloud resources using a state file, usually named `terraform.tfstate`. This file is automatically created and updated after every terraform apply.
+
+```
+cd ~/oci_terraform_school/session2_compartment
+ls -ltr
+```
+
+Expected output:
+
+```
+total 80
+-rw-r--r--@ 1 aszynkow  staff   203 Jul 21 03:46 provider.tf
+-rw-r--r--@ 1 aszynkow  staff   231 Jul 22 14:50 main.tf
+-rw-r--r--@ 1 aszynkow  staff   642 Jul 22 14:51 variables.tf
+-rw-r--r--  1 aszynkow  staff   234 Jul 23 11:00 terraform.tfvars
+-rw-r--r--  1 aszynkow  staff   440 Jul 23 11:03 terraform.tfstate.backup
+-rw-r--r--  1 aszynkow  staff  1831 Jul 23 11:03 terraform.tfstate
+-rw-r--r--@ 1 aszynkow  staff   224 Jul 23 11:48 outputs.tf
+-rw-r--r--@ 1 aszynkow  staff  9984 Jul 23 11:52 README.md
+```
+
+💾 Automatic Local Backup: terraform.tfstate.backup
+
+Whenever Terraform makes changes to the state, it automatically creates a backup copy: `terraform.tfstate.backup`
+
+
+✅ Why Is It Important?
+- **Remembers** what Terraform created
+
+- **Tracks** actual resource IDs (e.g., OCIDs in OCI)
+
+- **Detects** configuration drift
+
+- Used by Terraform to **determine what to change** next
+
+- May contain **sensitive data** — handle securely
+
+- **Never edit manually**
+
+
+📄 Example: Compartment Entry in `terraform.tfstate`
+
+After you create a compartment, your terraform.tfstate may contain an entry like this (simplified for clarity):
+ 
+```
+{
+  "resources": [
+    {
+      "type": "oci_identity_compartment",
+      "name": "tfschool",
+      "provider": "provider[\"registry.terraform.io/hashicorp/oci\"]",
+      "instances": [
+        {
+          "attributes": {
+            "id": "ocid1.compartment.oc1..aaaaaaaexample",
+            "name": "tfschool-compartment",
+            "description": "Demo compartment for Terraform School",
+            "enable_delete": true,
+            "compartment_id": "ocid1.tenancy.oc1..aaaaaaaaparent",
+            ...
+          }
+        }
+      ]
+    }
+  ]
+}
+```
+
+🔍 What Does This Tell Us?
+
+- **"type":** "oci_identity_compartment"	This block represents a compartment resource
+- **"name":** "tfschool"	This is the local name you gave the resource in your .tf file
+- **"id"**	This is the real OCID assigned by OCI after the compartment was created
+- **"name", "description"**	These reflect the properties you set in your main.tf
+- **"compartment_id"**	This shows the parent compartment OCID, often your root tenancy
+- **"enable_delete"**	Indicates whether the compartment can be deleted via Terraform
+
+
+🧪 How Terraform Uses It
+
+When you run terraform plan later, Terraform compares:
+
+- What’s in the .tf files
+
+- What’s in the live OCI environment (via API)
+
+- What’s in the state file
+
+This lets Terraform determine the delta (add/update/delete) and ensures no unnecessary changes are made.
+
+
+☁️ Remote State Storage (Recommended for Teams)
+
+When working in a team or managing critical infrastructure, it's best to store the state file remotely. This avoids issues like:
+
+ - Lost local files
+
+ - Conflicts from multiple users applying changes simultaneously
+
+ - Lack of versioning or backups
+
+
+🔒 Benefits of Remote State
+
+ - **Collaboration**	Everyone works off the same state file
+ - **Locking**          Prevents simultaneous terraform apply operations
+ - **Backups**      	Most remote storage solutions (like OCI Object Storage) offer versioning
+ - **Security**     	Can be locked down with IAM and encryption
+
+📁 **Find out more about Remote State Files:** [Session 8 - Remote State File](../session8_remote_state/README.md)
+
 ## ✅ Summary
 
 - Use `sourceTfEnv.sh` to export OCI authentication variables
@@ -249,6 +363,7 @@ These outputs are especially useful when chaining Terraform modules or providing
 - Understand the difference between provider env vars and tfvars
 - Run `init`, `validate`, `plan`, and `apply` to provision resourcess
 - Use `enable_delete` to protect critical resources from deletion
+- Understand Terrafrom State Files
 
 ## 🚀 Coming Up in Session 3
 
