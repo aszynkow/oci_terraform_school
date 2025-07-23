@@ -78,6 +78,10 @@ is 1.12.2. You can update by downloading from https://www.terraform.io/downloads
 
 ## 🛠 Step 3: Source Terrafrom Environment
 
+Before running Terraform, you must configure your environment with the correct provider variables. These variables are used by the **OCI provider** to authenticate and communicate with Oracle Cloud Infrastructure.
+
+You can set them manually, or source them from a helper script:
+
 ### 🔸 Populate TF Environemnt sourcing script
 
 ```bash
@@ -113,9 +117,13 @@ TF_VAR_region=ap-melbourne-1
 TF_VAR_private_key_path=/path/to/private/api/key/apikey.pem
 ```
 
+These environment variables are required by the OCI provider block in [provider.tf](./provider.tf)
+
 ## 🛠 Step 4: Run Terraform Commands
 
 ### 🔸 Initialize Terraform
+
+Run `terraform init` to initialize your working directory and download the necessary provider plugins:
 
 ```bash
 terraform init
@@ -136,6 +144,8 @@ This sets up your working directory and downloads the provider plugin.
 
 ### 🔸 Validate Your Code
 
+Make sure the configuration is syntactically valid and all required variables are accounted for:
+
 ```bash
 terraform validate
 ```
@@ -148,6 +158,8 @@ Success! The configuration is valid.
 ---
 
 ### 🔸 Preview the Plan
+
+Check what resources will be created without applying any changes:
 
 ```bash
 terraform plan
@@ -200,8 +212,8 @@ session1-setup_and_basics/
 
 ## 🧠 Key Takeaways
 
+- Use a helper such as `sourceTfEnv.sh` to export OCI authentication variables
 - Terraform is installed and ready.
-- OCI CLI is configured and can interact with Oracle Cloud.
 - You have a basic `provider.tf` and variables setup.
 - You know how to run the core Terraform commands: `init`, `validate`, `plan`, `apply`.
 
@@ -209,7 +221,7 @@ session1-setup_and_basics/
 
 ## 🚀 Coming Up in Session 2
 
-We'll start deploying actual OCI infrastructure — beginning with Virtual Cloud Networks (VCNs) and subnets.
+We'll start deploying actual OCI infrastructure — beginning with a Compartment.
 
 ---
 
